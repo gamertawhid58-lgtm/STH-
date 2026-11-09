@@ -1,0 +1,564 @@
+
+/* =========================================
+   STH EMPIRE — MAIN STYLESHEET
+   File: css/style.css
+========================================= */
+
+/* ---------- 1. ROOT & RESET ---------- */
+
+:root {
+    --bg: #080b14;
+    --bg-secondary: #0d1220;
+    --card: #111827;
+    --primary: #6366f1;
+    --secondary: #06b6d4;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --border: rgba(148, 163, 184, 0.15);
+    --gradient: linear-gradient(135deg, #6366f1, #06b6d4);
+    --transition: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+::selection {
+    background: var(--primary);
+    color: white;
+}
+
+
+/* ---------- 2. SCROLLBAR ---------- */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+
+/* ---------- 3. GENERAL UTILITIES ---------- */
+
+.gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.glow {
+    box-shadow: 0 0 35px rgba(99, 102, 241, 0.2);
+}
+
+.section-label {
+    display: inline-block;
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 50px;
+    padding: 6px 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+
+/* ---------- 4. NAVIGATION ---------- */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(8, 11, 20, 0.85);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-link {
+    position: relative;
+    color: var(--muted);
+    font-weight: 500;
+    transition: color var(--transition);
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: var(--gradient);
+    transition: width var(--transition);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hamburger button */
+
+#menu-btn {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: white;
+    padding: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+/* Mobile menu */
+
+#mobile-menu {
+    display: none;
+    background: rgba(13, 18, 32, 0.98);
+    border-top: 1px solid var(--border);
+    padding: 15px 20px;
+}
+
+#mobile-menu.active {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#mobile-menu .nav-link {
+    display: block;
+    padding: 8px 0;
+}
+
+
+/* ---------- 5. HERO SECTION ---------- */
+
+.hero-card {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(99, 102, 241, 0.16),
+            transparent 40%
+        ),
+        var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: clamp(25px, 5vw, 55px);
+}
+
+.hero-card::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: -120px;
+    right: -100px;
+    background: rgba(6, 182, 212, 0.12);
+    filter: blur(80px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ---------- 6. BUTTONS ---------- */
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--gradient);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.25);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    transition: all var(--transition);
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary);
+    background: rgba(99, 102, 241, 0.1);
+    transform: translateY(-3px);
+}
+
+
+/* ---------- 7. SERVICE CARDS ---------- */
+
+.service-card {
+    height: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px;
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(99, 102, 241, 0.55);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ---------- 8. PROJECT CARDS ---------- */
+
+.project-card {
+    height: 100%;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: transform var(--transition), border-color var(--transition);
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(6, 182, 212, 0.5);
+}
+
+.project-preview {
+    min-height: 180px;
+    overflow: hidden;
+    background: #151c2c;
+}
+
+.project-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-preview img {
+    transform: scale(1.05);
+}
+
+.project-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 4px 3px 0 0;
+    border-radius: 50px;
+    background: rgba(99, 102, 241, 0.12);
+    color: #a5b4fc;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+
+/* ---------- 9. ABOUT SECTION ---------- */
+
+#about {
+    position: relative;
+}
+
+#about p {
+    color: var(--muted);
+}
+
+
+/* ---------- 10. CONTACT SECTION ---------- */
+
+#contact input,
+#contact textarea {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 15px;
+    color: white;
+    outline: none;
+    transition: border-color var(--transition);
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    border-color: var(--primary);
+}
+
+#contact input::placeholder,
+#contact textarea::placeholder {
+    color: #64748b;
+}
+
+
+/* ---------- 11. SOCIAL LINKS ---------- */
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--muted);
+    transition: all var(--transition);
+}
+
+.social-link:hover {
+    color: white;
+    background: rgba(99, 102, 241, 0.15);
+    border-color: var(--primary);
+    transform: translateY(-3px);
+}
+
+
+/* ---------- 12. FOOTER ---------- */
+
+footer {
+    background: #060912;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+}
+
+
+/* ---------- 13. PREMIUM LOADER ---------- */
+
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #080b14;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+
+.loader-logo {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    border-radius: 22px;
+    animation: loaderPulse 1.8s ease-in-out infinite;
+}
+
+.loader-line {
+    width: 110px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loader-line span {
+    display: block;
+    width: 40%;
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 10px;
+    animation: loaderProgress 1.3s ease-in-out infinite;
+}
+
+/* JS can add either class to hide the loader */
+
+#loader.hidden,
+#loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@keyframes loaderPulse {
+    0%, 100% {
+        transform: scale(0.96);
+        opacity: 0.75;
+    }
+    50% {
+        transform: scale(1.04);
+        opacity: 1;
+    }
+}
+
+@keyframes loaderProgress {
+    0% {
+        transform: translateX(-120%);
+    }
+    100% {
+        transform: translateX(280%);
+    }
+}
+
+
+/* ---------- 14. SCROLL ANIMATIONS ---------- */
+
+.fade-in {
+    animation: fadeIn 0.8s ease both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ---------- 15. RESPONSIVE DESIGN ---------- */
+
+@media (max-width: 768px) {
+
+    #menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-card {
+        border-radius: 18px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .service-card,
+    .project-card {
+        padding: 20px;
+    }
+
+    .project-preview {
+        min-height: 150px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+    }
+
+    .hero-card {
+        padding: 22px;
+    }
+
+    .loader-logo {
+        width: 90px;
+        height: 90px;
+    }
+
+}
+
+/* SOCIAL MEDIA LAYOUT FIX */
+
+.social-links-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px !important;
+    width: 100%;
+    margin-top: 36px;
+}
+
+.social-links-container .social-link {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: auto !important;
+    min-width: 110px;
+    padding: 10px 18px;
+    margin: 0 !important;
+    flex: 0 0 auto;
+}
+
+
